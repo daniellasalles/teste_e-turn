@@ -62,9 +62,13 @@
                                 <span class="col col-md-4">
                                     <input type="text" class="form-control" name="cep" id="cep" ng-model="contato.endereco.cep">
                                 </span>
-                                <span class="col col-md-3 input-group-btn">
+                                <span class="col input-group-btn">
                                     <button type="button" ng-click="buscaCep()" class="btn btn-primary" id="buscaCep">Buscar CEP</button>
+                                    <span class="alert alert-warning ml-2"  ng-hide="!errorMessage">
+                                        {{ errorMessage }}
+                                    </span>
                                 </span>
+
                                 
                             </div>
                         </div>
