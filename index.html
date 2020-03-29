@@ -17,12 +17,12 @@
     </head>
     <body>
         <nav>
-            <img src="" width="" alt="Logo E-turn" title="Logo E-turn"/>
         </nav>
         <div class="container" ng-controller="formCtrl">
             <section id="formulario">
                 <h2>Cadastro de contatos</h2>
                 <form action="" method="">
+                    <!--------------------------- DADOS PESSOAIS ----------------------------->
                     <fieldset class="form-group mb-4" name="dadosPessoais">
                         <legend>Dados pessoais</legend>
 
@@ -42,7 +42,9 @@
                             <div class="col col-md-8">
                                 <label for="email">E-mail</label>
                                 <input type="email" class="form-control" name="email" id="email" ng-model="contato.email">
-                                {{email}}
+                                <span class="alert alert-warning ml-2"  ng-hide="!errorDuplic">
+                                    {{ errorDuplic }}
+                                </span>
                             </div>
                         </div>
 
@@ -52,8 +54,8 @@
                         </div>
                         
                     </fieldset>
-                
-                    <fieldset>
+                <!--------------------------- ENDEREÇO ----------------------------->
+                    <fieldset class="form-group mb-4" name="endereco">
                         <legend>Endereço</legend>
 
                         <div class="form-group ">
@@ -65,11 +67,9 @@
                                 <span class="col input-group-btn">
                                     <button type="button" ng-click="buscaCep()" class="btn btn-primary" id="buscaCep">Buscar CEP</button>
                                     <span class="alert alert-warning ml-2"  ng-hide="!errorMessage">
-                                        {{ errorMessage }}
+                                        {{ errorCep }}
                                     </span>
                                 </span>
-
-                                
                             </div>
                         </div>
 
@@ -108,9 +108,6 @@
                             </div>
                             <button type="button" class="btn btn-primary mt-2 ml-1" id="addEndereco">Adicionar endereço</button>
                         </div>
-
-                        
-                        <br />
                     </fieldset>
                     
                     <button class="btn btn-secondary mt-2">Limpar</button>
@@ -119,16 +116,20 @@
                 </form>
             </section>
 
+            <!--------------------------- LISTA DE CONTATOS ----------------------------->
             <section id='lista'>
-                <table class='table'>
-                    <thead ng-repeat="contato in contatos">
-                         <th ng-repeat="(key, value) in contato">
-                            {{ key }}
-                        </th>
+                <h2 class="mt-4">Lista de contatos</h2>
+                <table class='table mt-2'>
+                    <thead>
+                         <th>Nome</th>
+                         <th>E-mail</th>
                     </thead>
                     <tr ng-repeat="contato in contatos">
-                        <td ng-repeat="(key, value) in contato">
-                            {{ value }}
+                        <td>
+                            {{ contato.nome }}
+                        </td>
+                        <td>
+                            {{ contato.email }}
                         </td>
                     </tr>
                     </thead>
